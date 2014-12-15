@@ -1,0 +1,24 @@
+[user]
+	name = ... # username
+	email = ... # user_email
+[color]
+	ui = true
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+
+[git]
+[global]
+[core]
+  pager = cat
+  filemode = false
+	precomposeunicode = true
+
+[pull]
+  rebase = true
+
+[push]
+	default = simple
