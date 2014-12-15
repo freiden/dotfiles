@@ -1,0 +1,11 @@
+<snippet>
+  <content><![CDATA[
+Rails.logger.debug "${1:>}"*70
+Rails.logger.ap ${3:element}
+Rails.logger.debug "${1:>}"*70
+]]></content>
+  <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+  <tabTrigger>logblock</tabTrigger>
+  <!-- Optional: Set a scope to limit where the snippet will trigger -->
+  <scope>source.ruby</scope>
+</snippet>

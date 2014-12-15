@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Update bash PATH variables to manage rbenv paths
+export RBENV_ROOT="/usr/local/var/rbenv"
+export PATH="${RBENV_ROOT}/shims:/usr/local/sbin:/usr/local/bin:${PATH}"
+
+function generate_file_tags () {
+  find . -name '*.rb' | ctags -f .tags -L -
+}
+
+function generate_gem_tags () {
+  ctags -R -f $1.gemtags `bundle show --paths`
+}
+
+generate_file_tags
+
+if [[ -a ./Gemfile ]]; then
+  generate_gem_tags
+elif [[ -a ./webapp/Gemfile ]]; then
+  cd './webapp'
+  generate_gem_tags "../"
+fi
