@@ -50,7 +50,7 @@ plugins=(git history history-substring-search)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/var/rbenv/shims:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -123,7 +123,27 @@ function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop t
 function sidekiq_restart() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid && bundle exec sidekiq -d; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
 
 # Rbenv init
-# eval "$(rbenv init -)"
-export RBENV_ROOT=/usr/local/var/rbenv
-#if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+## eval "$(rbenv init -)"
+# export RBENV_ROOT=/usr/local/var/rbenv
+# if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+if which rbenv &> /dev/null; then
+  export RBENV_ROOT=/usr/local/var/rbenv
+  export PATH="$RBENV_ROOT/shims:$PATH"
+  eval "$(rbenv init - zsh)"
+fi
 
+##### Custom finder ######
+DEV_DIRECTORY="$HOME/..."
+PROJECTS_DIRECTORY="$DEV_DIRECTORY/..."
+
+function cdproj() {
+  cd $PROJECTS_DIRECTORY/$1
+  { [ -d 'webapp' ] && cd webapp; }
+  return 0
+}
+
+_cdproj() {
+  _files -W $PROJECTS_DIRECTORY
+}
+
+compdef _cdproj cdproj
