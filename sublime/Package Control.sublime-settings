@@ -1,0 +1,19 @@
+{
+	"installed_packages":
+	[
+		"Better CoffeeScript",
+		"Better RSpec",
+		"CTags",
+		"GitGutter",
+		"Haml",
+		"Handlebars",
+		"LastModifiedIndicator",
+		"Markdown Extended",
+		"Package Control",
+		"Rails Partial",
+		"RSpec",
+		"Ruby Slim",
+		"Theme - Spacegray",
+		"TrailingSpaces"
+	]
+}

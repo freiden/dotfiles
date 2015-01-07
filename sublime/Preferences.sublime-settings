@@ -35,7 +35,9 @@
 		".svn",
 		".git",
 		".hg",
-		"CVS"
+		"CVS",
+		".bundle",
+		".gems"
 	],
 	"git_gutter_live_mode": false,
 	"highlight_line": true,
