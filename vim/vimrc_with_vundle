@@ -22,6 +22,7 @@ Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-markdown'
 Plugin 'wting/rust.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'elixir-lang/vim-elixir'
 " My plugins ending
 
 " All of your Plugins must be added before the following line
