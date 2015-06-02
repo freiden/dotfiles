@@ -117,6 +117,9 @@ function sdc() {
   fi
 }
 
+## Vagrant
+function v() { vagrant "$@"; }
+
 # Sidekiq
 function sidekiq_start() { bundle exec sidekiq -d; }
 function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
