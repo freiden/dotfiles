@@ -17,12 +17,16 @@ Plugin 'gmarik/Vundle.vim'
 " My plugins Beginning
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-bundler'
+"Plugin 'tpope/vim-bundler'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-markdown'
 Plugin 'wting/rust.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bling/vim-airline'
+
 " My plugins ending
 
 " All of your Plugins must be added before the following line
@@ -43,7 +47,6 @@ filetype plugin indent on    " required
 
 syn on " Use syntaxic coloration
 set background=dark
-set autoindent
 
 set softtabstop=2 " Use space as tab, eq to st
 set tabstop=2 " as above, eq to ts
@@ -71,7 +74,4 @@ nnoremap J mzJ`z
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-
-" Pathogen
-" execute pathogen#infect()
 

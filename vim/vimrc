@@ -29,7 +29,3 @@ set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
-" Pathogen
-" Pathogen allow to manage vim plugins
-" execute pathogen#infect()
-
