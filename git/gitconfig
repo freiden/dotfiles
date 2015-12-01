@@ -1,6 +1,6 @@
 [user]
-	name = ... # username
-	email = ... # user_email
+	name = charles FD # username
+	email = charles.freitas-denke@vodeclic.com # user_email
 [color]
 	ui = true
 [alias]
@@ -16,9 +16,28 @@
   pager = cat
   filemode = false
 	precomposeunicode = true
+	editor = /usr/bin/vi
 
 [pull]
   rebase = true
 
 [push]
-	default = simple
+	default = tracking
+[credential]
+	helper = osxkeychain
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[rerere]
+	enabled = true
+[commit]
+  template = ~/.gitmessage
