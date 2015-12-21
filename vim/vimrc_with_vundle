@@ -17,6 +17,7 @@ Plugin 'gmarik/Vundle.vim'
 " My plugins Beginning
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 "Plugin 'tpope/vim-bundler'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-markdown'
@@ -50,6 +51,7 @@ set background=dark
 
 set softtabstop=2 " Use space as tab, eq to st
 set tabstop=2 " as above, eq to ts
+set shiftwidth=2 " as above, eq to sw
 set textwidth=0 " as above, eq to tw
 set ignorecase " eq to ic
 set number " Display line number
@@ -74,4 +76,21 @@ nnoremap J mzJ`z
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+
+" Vim-Airline
+let g:airline#extensions#tabline#enabled = 1
+
+" Vim-Better-Whitespace
+let g:strip_whitespace_on_save = 1
+
+augroup vim_config
+  autocmd FileType gitrebase call LoadGitrebaseBindings()
+augroup END
+
+fun! LoadGitrebaseBindings()
+  nnoremap  P :Pick<CR>
+  nnoremap  S :Squash<CR>
+  nnoremap  F :Fixup<CR>
+  nnoremap  C :Cycle<CR>
+endfun
 

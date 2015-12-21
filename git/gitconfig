@@ -1,6 +1,6 @@
 [user]
-	name = charles FD # username
-	email = charles.freitas-denke@vodeclic.com # user_email
+	name = # username
+	email = # user_email
 [color]
 	ui = true
 [alias]
@@ -16,7 +16,7 @@
   pager = cat
   filemode = false
 	precomposeunicode = true
-	editor = /usr/bin/vi
+	editor = /usr/bin/vim
 
 [pull]
   rebase = true
@@ -40,4 +40,4 @@
 [rerere]
 	enabled = true
 [commit]
-  template = ~/.gitmessage
+  template = ~/.git_commit_msg

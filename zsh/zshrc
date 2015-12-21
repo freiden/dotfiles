@@ -50,7 +50,8 @@ plugins=(git history history-substring-search)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+#export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -117,13 +118,10 @@ function sdc() {
   fi
 }
 
-## Vagrant
-function v() { vagrant "$@"; }
-
 # Sidekiq
-function sidekiq_start() { bundle exec sidekiq -d; }
-function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
-function sidekiq_restart() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid && bundle exec sidekiq -d; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
+#function sidekiq_start() { bundle exec sidekiq -d; }
+#function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
+#function sidekiq_restart() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid && bundle exec sidekiq -d; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
 
 # Rbenv init
 ## eval "$(rbenv init -)"
@@ -136,8 +134,8 @@ if which rbenv &> /dev/null; then
 fi
 
 ##### Custom finder ######
-DEV_DIRECTORY="$HOME/..."
-PROJECTS_DIRECTORY="$DEV_DIRECTORY/..."
+DEV_DIRECTORY="$HOME/Devs"
+PROJECTS_DIRECTORY="$DEV_DIRECTORY/projects"
 
 function cdproj() {
   cd $PROJECTS_DIRECTORY/$1
@@ -150,3 +148,56 @@ _cdproj() {
 }
 
 compdef _cdproj cdproj
+
+
+##### VODECLIC settings #####
+VAGRANT_PRIVATE_IP="10.0.0.100"
+VAGRANT_PRIVATE_IP2="10.0.0.102"
+VAGRANT_PRIVATE_IP_SHOP="10.0.0.104"
+VAGRANT_CPU="4"
+#VAGRANT_RAM="8192"
+VAGRANT_RAM="4096"
+
+tab-color() {
+echo -ne "\033]6;1;bg;red;brightness;$1\a"
+echo -ne "\033]6;1;bg;green;brightness;$2\a"
+echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+tab-reset() {
+echo -ne "\033]6;1;bg;*;default\a"
+}
+
+# Change the color of the tab when using SSH
+# reset the color after the connection closes
+color-ssh() {
+  if [[ -n "$ITERM_SESSION_ID" ]]; then
+    trap "tab-reset" INT EXIT
+    if [[ "$*" =~ "web1|web2" ]]; then
+      tab-color 255 0 0
+    elif [[ "$*" =~ "preprod" ]]; then
+      tab-color 255 102 0
+    elif [[ "$*" =~ "dev" ]]; then
+      tab-color 0 255 255
+    elif [[ "$*" =~ "127.0.0.1" ]]; then
+      tab-color 0 0 255
+    else
+      tab-color 255 222 0
+    fi
+  fi
+  ssh $*
+}
+compdef _ssh color-ssh=ssh
+
+alias ssh=color-ssh
+
+bindkey -e
+
+## Vagrant
+function v() { vagrant "$@"; }
+
+## Docker (TAF)
+# export DOCKER_TLS_VERIFY="1"
+# export DOCKER_HOST="tcp://192.168.99.100:2376"
+# export DOCKER_CERT_PATH="/Users/charles/.docker/machine/machines/default"
+# export DOCKER_MACHINE_NAME="default"
+
