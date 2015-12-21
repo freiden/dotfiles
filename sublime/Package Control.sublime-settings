@@ -1,19 +1,30 @@
 {
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
+		"Alignment",
 		"Better CoffeeScript",
-		"Better RSpec",
+		"BracketHighlighter",
 		"CTags",
-		"GitGutter",
-		"Haml",
-		"Handlebars",
+		"Dockerfile Syntax Highlighting",
+		"Emmet",
+		"Fix Mac Path",
+		"Git",
+		"Github Tools",
 		"LastModifiedIndicator",
-		"Markdown Extended",
+		"nginx",
+		"Origami",
 		"Package Control",
 		"Rails Partial",
+		"Rake",
 		"RSpec",
-		"Ruby Slim",
+		"RuboCop",
+		"Sass",
 		"Theme - Spacegray",
-		"TrailingSpaces"
+		"Vagrant",
+		"Varnish VCL"
 	]
 }
