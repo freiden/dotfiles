@@ -1,0 +1,86 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+## Bash Profile Tech
+
+PROJECT_COLOR="33"
+
+export LANG=fr_FR.utf8 LC_ALL=fr_FR.utf8 EDITOR=vim RAILS_ENV=development # ou production
+export EVENT_NOKQUEUE=1
+umask 0002
+
+# Alias
+function ls() { /bin/ls --color=auto "$@"; }
+function l()  { ls -l "$@"; }
+function ll() { ls -laF "$@"; }
+function be() { bundle exec "$@"; }
+function rdm() { be rake db:migrate "$@"; }
+function rsc() { be rails c "$@"; }
+function rsg() { be rails g "$@"; }
+function rss() { be rails s ruby "$@"; }
+function sdc() { be rails db -p "$@"; }
+function tlf() { tail -f log/${RAILS_ENV:-development}.log; }
+# function rm() { /bin/rm -i "$@"; }
+# function cp() { /bin/cp -i "$@"; }
+# function mv() { /bin/mv -i "$@"; }
+function generate_ctags() { /home/vagrant/./ctags_for_ruby "$@"; }
+
+
+# source /etc/bash_completion.d/git
+export GIT_PS1_SHOWDIRTYSTATE=1 GIT_PS1_SHOWUNTRACKEDFILES=1 GIT_PS1_SHOWSTASHSTATE=1
+
+## rvm and vodeclic default settings
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Prompt
+NEW_PWD=$PWD
+ERR_TXT="no err"
+function prompt_command {
+  ERR=$?
+  if [ $ERR -ne 0 ]; then
+    ERR_TXT="[ERR $ERR] "
+  else
+    ERR_TXT=""
+  fi
+  NEW_PWD=`echo -n $PWD | sed -e "s/^\(\/home\/vagrant\)/~/"`
+  #SHORT_PWD=`echo -n $NEW_PWD | sed -e "s/^\(.*.\)\(\/\([^/]*\).\/\([^/]*\).\/\([^/]*\).*\)$/...\2/"`
+  echo -e "\033[0;31m$NEW_PWD\033[0m$(__git_ps1)"
+}
+
+PROMPT_COMMAND=prompt_command
+
+PS1="\[\033[1;32m\]\${ERR_TXT}\[\033[0m\]\
+\[\033[1m\]\u\[\033[0m\]\
+\[\033[0;34m\]@\[\033[0m\]\
+\[\033[1;${PROJECT_COLOR}m\]\h\[\033[0m\] \
+\[\033[0;32m\][\A]\[\033[0m\] \
+\[\033[0;32m\]>\[\033[0m\] "
