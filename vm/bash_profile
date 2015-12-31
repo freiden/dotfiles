@@ -31,12 +31,9 @@ function rdms() { be rake db:migrate:status "$@"; }
 function rdbroll() { be rake db:rollback "$@"; }
 function rsc() { be rails c "$@"; }
 function rsg() { be rails g "$@"; }
-function rss() { be rails s ruby "$@"; }
+function rss() { be rails s "$@"; }
 function sdc() { be rails db -p "$@"; }
 function tlf() { tail -f log/${RAILS_ENV:-development}.log; }
-# function rm() { /bin/rm -i "$@"; }
-# function cp() { /bin/cp -i "$@"; }
-# function mv() { /bin/mv -i "$@"; }
 function generate_ctags() { /home/vagrant/./ctags_for_ruby "$@"; }
 function flush_all_varnish() { sudo varnishadm -S /etc/varnish/secret 'ban.url .'; }
 function flush_all_redis() { redis-cli flushall; }
