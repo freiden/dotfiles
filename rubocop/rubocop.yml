@@ -5,7 +5,7 @@ Rails:
 Metrics/ModuleLength:
   Max: 200
 Metrics/LineLength:
-    Max: 100
+    Max: 120
 Style/SignalException:
   Enabled: false
 Lint/EndAlignment:
@@ -18,8 +18,8 @@ Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 Style/EmptyLinesAroundClassBody:
     EnforcedStyle: empty_lines
-Style/EmptyLinesAroundModuleBody:
-  EnforcedStyle: empty_lines
+#Style/EmptyLinesAroundModuleBody:
+#  EnforcedStyle: empty_lines
 Style/MultilineMethodCallIndentation:
   EnforcedStyle: indented
   IndentationWidth: 2
@@ -30,3 +30,7 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
   EnforcedStyle: nested
+Style/AccessModifierIndentation:
+  EnforcedStyle: outdent
+Metrics/MethodLength:
+  Max: 25
