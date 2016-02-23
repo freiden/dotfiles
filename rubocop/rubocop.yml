@@ -34,3 +34,5 @@ Style/AccessModifierIndentation:
   EnforcedStyle: outdent
 Metrics/MethodLength:
   Max: 25
+Style/PerlBackrefs:
+  Enabled: false
