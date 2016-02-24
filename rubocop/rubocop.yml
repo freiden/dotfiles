@@ -36,3 +36,11 @@ Metrics/MethodLength:
   Max: 25
 Style/PerlBackrefs:
   Enabled: false
+Style/AndOr:
+  EnforcedStyle: conditionals
+Metrics/AbcSize:
+  Enabled: true
+  Max: 25
+Style/AlignHash:
+  Enabled: false
+
