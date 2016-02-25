@@ -43,4 +43,8 @@ Metrics/AbcSize:
   Max: 25
 Style/AlignHash:
   Enabled: false
-
+Style/AccessorMethodName:
+  Description: Check the naming of accessor methods for get_/set_.
+  Enabled: false
+#Style/BracesAroundHashParameters:
+#  EnforcedStyle: context_dependent
