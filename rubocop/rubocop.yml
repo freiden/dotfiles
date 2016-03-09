@@ -48,3 +48,7 @@ Style/AccessorMethodName:
   Enabled: false
 #Style/BracesAroundHashParameters:
 #  EnforcedStyle: context_dependent
+Style/CaseIndentation:
+  IndentWhenRelativeTo: end
+Style/DoubleNegation:
+  Enabled: false
