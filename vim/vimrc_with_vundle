@@ -63,6 +63,7 @@ set textwidth=0 " as above, eq to tw
 set ignorecase " eq to ic
 set number " Display line number
 set expandtab " Replace tab by spaces
+set backspace=indent,eol,start " Fix backspace issue when not at end of line
 
 " Manage incremental search
 set incsearch
