@@ -52,3 +52,5 @@ Style/CaseIndentation:
   IndentWhenRelativeTo: end
 Style/DoubleNegation:
   Enabled: false
+Bundler/OrderedGems
+  Enabled: false
