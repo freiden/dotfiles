@@ -28,6 +28,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'bling/vim-airline'
 Plugin 'elzr/vim-json'
+Plugin 'othree/html5.vim'
 "Plugin 'slashmili/alchemist.vim'
 
 " My plugins ending
