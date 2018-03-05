@@ -1,5 +1,5 @@
-AllCops:
-  TargetRubyVersion: 2.1
+# AllCops:
+#   TargetRubyVersion: 2.5
 Rails:
     Enabled: true
 Metrics/ModuleLength:
@@ -8,19 +8,19 @@ Metrics/LineLength:
     Max: 120
 Style/SignalException:
   Enabled: false
-Lint/EndAlignment:
-  AlignWith: variable
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
 Style/StringLiterals:
   Enabled: false
 Style/StringLiteralsInInterpolation:
   Enabled: false
-Style/AlignParameters:
+Layout/AlignParameters:
   EnforcedStyle: with_fixed_indentation
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
     EnforcedStyle: empty_lines
-#Style/EmptyLinesAroundModuleBody:
+#Layout/EmptyLinesAroundModuleBody:
 #  EnforcedStyle: empty_lines
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
   IndentationWidth: 2
 Rails/ActionFilter:
@@ -30,7 +30,7 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
   EnforcedStyle: nested
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 Metrics/MethodLength:
   Max: 25
@@ -41,16 +41,16 @@ Style/AndOr:
 Metrics/AbcSize:
   Enabled: true
   Max: 25
-Style/AlignHash:
+Layout/AlignHash:
   Enabled: false
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
   Enabled: false
-#Style/BracesAroundHashParameters:
+#Layout/BracesAroundHashParameters:
 #  EnforcedStyle: context_dependent
-Style/CaseIndentation:
-  IndentWhenRelativeTo: end
+Layout/CaseIndentation:
+  EnforcedStyle: end
 Style/DoubleNegation:
   Enabled: false
-Bundler/OrderedGems
+Bundler/OrderedGems:
   Enabled: false
