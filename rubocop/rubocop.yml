@@ -54,3 +54,5 @@ Style/DoubleNegation:
   Enabled: false
 Bundler/OrderedGems:
   Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
