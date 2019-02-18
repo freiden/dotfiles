@@ -50,7 +50,6 @@ plugins=(git history history-substring-search)
 
 # User configuration
 
-#export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 export PATH="/usr/local/bin:/usr/local/share/npm/bin:/usr/local/sbin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -84,45 +83,6 @@ source $ZSH/oh-my-zsh.sh
 
 ################ Customizations ################
 
-### Web dev functions
-function tlf() { tail -f log/${RAILS_ENV:-development}.log; }
-function rdm() { bundle exec rake db:migrate "$@"; }
-function rdms() { bundle exec rake db:migrate:status "$@"; }
-function rdbroll() { bundle exec rake db:rollback "$@"; }
-function rap() { bundle exec rake assets:precompile "$@"; }
-function rac() { bundle exec rake assets:clean "$@"; }
-function rsc() { if [ -f script/console ]; then bundle exec script/console "$@"; else bundle exec rails c "$@"; fi }
-function be() { bundle exec "$@"; }
-
-function rsg() {
-  if [ -f script/generate ]; then
-    bundle exec ruby script/generate "$@"
-  else
-    bundle exec rails generate "$@"
-  fi
-}
-
-function rss() {
-  if [ -f script/server ]; then
-    bundle exec ruby script/server "$@"
-  else
-    bundle exec rails server "$@"
-  fi
-}
-
-function sdc() {
-  if [ -f script/dbconsole ]; then
-    bundle exec script/dbconsole -p "$@"
-  else
-    bundle exec rails db "$@"
-  fi
-}
-
-# Sidekiq
-#function sidekiq_start() { bundle exec sidekiq -d; }
-#function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
-#function sidekiq_restart() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid && bundle exec sidekiq -d; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
-
 # Rbenv init
 ## eval "$(rbenv init -)"
 # export RBENV_ROOT=/usr/local/var/rbenv
@@ -133,15 +93,45 @@ if which rbenv &> /dev/null; then
   eval "$(rbenv init - zsh)"
 fi
 
+### Web dev functions
+#### Rails custom functions:
+function tlf() { tail -f log/${RAILS_ENV:-development}.log; }
+function rdm() { bundle exec rake db:migrate "$@"; }
+function rdms() { bundle exec rake db:migrate:status "$@"; }
+function rdbroll() { bundle exec rake db:rollback "$@"; }
+function rap() { bundle exec rake assets:precompile "$@"; }
+function rac() { bundle exec rake assets:clean "$@"; }
+function rsc() { bundle exec rails c "$@"; }
+function be() { bundle exec "$@"; }
+
+function rsg() { bundle exec rails generate "$@"; }
+
+function rss() { bundle exec rails server "$@"; }
+
+function sdc() { bundle exec rails db "$@"; }
+
+# Sidekiq
+#function sidekiq_start() { bundle exec sidekiq -d; }
+#function sidekiq_stop() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
+#function sidekiq_restart() { if [ -f tmp/pids/sidekiq.pid ]; then sidekiqctl stop tmp/pids/sidekiq.pid && bundle exec sidekiq -d; else echo "Missing file 'tmp/pids/sidekiq.pid'"; fi }
+
+#### Webpacker
+function wds() { bin/webpack-dev-server "$0"; }
+
+#### Foreman
+function fmanst() { foreman start -f Procfile.dev "$@"; }
+
+### Git
+function git_prune() {
+  git branch --merged master | grep -v '^[ *]*master$' | xargs git branch -d
+}
+
 ##### Custom finder ######
 DEV_DIRECTORY="$HOME/Devs"
 PROJECTS_DIRECTORY="$DEV_DIRECTORY/projects"
+TRASH_PROJECTS_DIRECTORY="$DEV_DIRECTORY/Trash"
 
-function cdproj() {
-  cd $PROJECTS_DIRECTORY/$1
-  { [ -d 'webapp' ] && cd webapp; }
-  return 0
-}
+function cdproj() { cd $PROJECTS_DIRECTORY/$1; return 0; }
 
 _cdproj() {
   _files -W $PROJECTS_DIRECTORY
@@ -150,13 +140,18 @@ _cdproj() {
 compdef _cdproj cdproj
 
 
-##### VODECLIC settings #####
-VAGRANT_PRIVATE_IP="10.0.0.100"
-VAGRANT_PRIVATE_IP2="10.0.0.102"
-VAGRANT_PRIVATE_IP_SHOP="10.0.0.104"
-VAGRANT_CPU="4"
-#VAGRANT_RAM="8192"
-VAGRANT_RAM="4096"
+function cdtrash() {
+  cd $TRASH_PROJECTS_DIRECTORY/$1
+  return 0
+}
+
+_cdtrash() {
+  _files -W $TRASH_PROJECTS_DIRECTORY
+}
+
+compdef _cdtrash cdtrash
+
+######### Others customizations #########
 
 tab-color() {
 echo -ne "\033]6;1;bg;red;brightness;$1\a"
@@ -193,11 +188,4 @@ alias ssh=color-ssh
 bindkey -e
 
 ## Vagrant
-function v() { vagrant "$@"; }
-
-## Docker (TAF)
-# export DOCKER_TLS_VERIFY="1"
-# export DOCKER_HOST="tcp://192.168.99.100:2376"
-# export DOCKER_CERT_PATH="/Users/charles/.docker/machine/machines/default"
-# export DOCKER_MACHINE_NAME="default"
-
+# function v() { vagrant "$@"; }
