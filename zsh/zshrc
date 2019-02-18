@@ -189,3 +189,7 @@ bindkey -e
 
 ## Vagrant
 # function v() { vagrant "$@"; }
+
+##### GPG Signature #####
+# export GPG_TTY=$(tty)
+
