@@ -31,6 +31,10 @@ Plugin 'elzr/vim-json'
 Plugin 'othree/html5.vim'
 "Plugin 'slashmili/alchemist.vim'
 
+" JS libraries management plugins
+" Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'posva/vim-vue'
+
 " My plugins ending
 
 " All of your Plugins must be added before the following line
@@ -50,7 +54,7 @@ filetype plugin indent on    " required
 
 " Plugins Settings:
 " * Vim-Airline
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 " End of Vundle modification
 
@@ -91,6 +95,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Vim-Better-Whitespace
 let g:strip_whitespace_on_save = 1
+
+" * javascript-libraries-syntax
+let g:used_javascript_libs = 'jquery,vue'
 
 augroup vim_config
   autocmd FileType gitrebase call LoadGitrebaseBindings()
